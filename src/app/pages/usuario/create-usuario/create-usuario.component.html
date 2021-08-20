@@ -1,0 +1,61 @@
+<form [formGroup]="miFormulario" (ngSubmit)="saveUser()">
+
+    <div fxLayout="column">
+        <mat-form-field fxFlex appearance="outline">
+            <mat-label>Nombre:</mat-label>
+            <input type="text" matInput formControlName="firstName">
+            <mat-error *ngIf="miFormulario.controls.firstName.hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="outline">
+            <mat-label>Apellido:</mat-label>
+            <input type="text" matInput formControlName="lastName">
+            <mat-error *ngIf="miFormulario.controls.lastName.hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="fill">
+            <mat-label>Username:</mat-label>
+            <input (blur)="validateUsername($event)" type="text" matInput formControlName="username">
+            <mat-icon matSuffix *ngIf="isExistUsername">close</mat-icon>
+            <mat-icon matSuffix *ngIf="!isExistUsername">done</mat-icon>
+        </mat-form-field>
+        <label class="alert alert-danger" *ngIf="isExistUsername">EL usuario ya existe</label>
+
+        <mat-form-field fxFlex>
+            <mat-label>Contraseña:</mat-label>
+            <input type="password" matInput formControlName="clave">
+            <mat-error *ngIf="miFormulario.controls.clave.hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Choose an option</mat-label>
+            <mat-select formControlName="sucursal">
+                <mat-option *ngFor="let sucursal of misSucursales " value="sucursal.codigoSucursal ">
+                    {{sucursal.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline">
+            <mat-label>Choose an option</mat-label>
+            <mat-select formControlName="sucursal">
+                <mat-option *ngFor="let sucursal of misSucursales$ | async" [value]="sucursal">
+                    {{sucursal.nombre}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.sucursal.hasError('required')">
+                Este campo es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <button [disabled]="miFormulario.invalid" type="submit" mat-raised-button color="primary">Guardar</button>
+    </div>
+
+    <div *ngIf="msgError != null" class="alert alert-danger">{{msgError}}</div>
+</form>

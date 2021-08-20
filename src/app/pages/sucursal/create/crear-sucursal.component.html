@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Crear Sucursal</h1>
+<div mat-dialog-content>
+    <p>Ingrese el nombre de la sucursal:</p>
+    <mat-form-field style="width: 100%;">
+        <mat-label>Sucursal...</mat-label>
+        <input matInput [(ngModel)]="sucursal" #ctrl="ngModel">
+    </mat-form-field>
+    <!-- <label *ngIf="msgError !== null" style="color: #D14836;">{{msgError}}</label> -->
+    <label *ngIf="errorBoolean" style="color: #D14836;">No se pudo guardar</label>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button [disabled]="!sucursal" mat-button cdkFocusInitial (click)="guardarSucursal()">Guardar</button>
+</div>

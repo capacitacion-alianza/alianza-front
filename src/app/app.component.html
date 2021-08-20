@@ -1,0 +1,12 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <img src="assets/images/alianza-logo.jpg" width="150" height="70">
+
+        <a mat-button routerLink="/dashboard/usuarios">Usuarios</a>
+        <a mat-button routerLink="/dashboard/sucursales">Sucursales</a>
+        <a mat-button routerLink="/dashboard/productos">Productos</a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

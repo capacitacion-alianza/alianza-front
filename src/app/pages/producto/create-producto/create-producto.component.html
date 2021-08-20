@@ -1,0 +1,49 @@
+<!-- <h1>Registrar un Producto</h1>
+
+<div class="row">
+    <input class="col-12" type="text" placeholder="Ingrese el nombre " />
+
+    <input class="col-12 mt-2" type="text" placeholder="Ingrese el precio " />
+
+    <button type="button" class="btn btn-primary mt-2">Guardar</button>
+</div> -->
+
+<form (ngSubmit)="saveProduct()" [formGroup]="miFormulario">
+    <h1>Registrar un Producto</h1>
+
+    <div fxLayout="column" fxLayoutGap="12px">
+
+        <mat-form-field fxFlex>
+            <mat-label>Nombre:</mat-label>
+            <input matInput formControlName="nombreProducto">
+            <mat-error *ngIf="miFormulario.controls.nombreProducto.hasError('required')">
+                Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="miFormulario.controls.nombreProducto.hasError('minlength')">
+                M&iacute;nimo 5 caracteres
+            </mat-error>
+            <mat-error *ngIf="miFormulario.controls.nombreProducto.hasError('maxlength')">
+                M&aacute;ximo 7 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+            <mat-label>Precio:</mat-label>
+            <input type="number" min="0" max="10000" matInput formControlName="precio">
+            <mat-error *ngIf="miFormulario.controls.precio.hasError('required')">
+                Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="miFormulario.controls.precio.hasError('min')">
+                M&iacute;nimo un valor de 10
+            </mat-error>
+            <mat-error *ngIf="miFormulario.controls.precio.hasError('max')">
+                M&aacute;ximo un valor de 50
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button [disabled]="miFormulario.invalid" type="submit" mat-raised-button color="primary">Guardar</button>
+    </div>
+</form>

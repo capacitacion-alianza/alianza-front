@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sucursal } from 'src/app/interface/sucursal';
@@ -22,7 +22,7 @@ export class SucursalService {
   }
 
   findById(sucursalId: number): Observable<Sucursal> {
-    return this.httpClient.get<Sucursal>( `${this.endPoint}/${sucursalId}`);
+    return this.httpClient.get<Sucursal>( `${this.endPoint}/${sucursalId}`, );
   }
 
   update(sucursalId: number, sucursal: Sucursal) {

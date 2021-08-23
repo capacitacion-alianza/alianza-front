@@ -18,12 +18,17 @@ export class AuthService {
     return this.http.post<any>(this.endPoint, body, {headers});
   }
 
-  saveToken(token: string){
+  saveToken(token: string, timeexpired: number){
     localStorage.setItem("token-alianza", token);
+    localStorage.setItem("timeexpired", timeexpired.toString());
   }
 
   getTokenAuth() {
     return localStorage.getItem("token-alianza")
+  }
+
+  logout(){
+    localStorage.clear()
   }
 
 }

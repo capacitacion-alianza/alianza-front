@@ -27,6 +27,7 @@ import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.compon
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+
 @NgModule({
   declarations: [
     ListarSucursalComponent,
@@ -57,6 +58,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSnackBarModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-  ],
+  ]
 })
 export class PagesModule {}

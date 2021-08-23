@@ -23,6 +23,7 @@ export class ListUsuarioComponent {
       this.route.navigate(['auth'])
     }
   }
+
   addUser() {
     this.matDialog.open(CreateUsuarioComponent, {
       width: '480px'

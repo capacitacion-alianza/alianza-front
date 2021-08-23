@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
 
   formulario: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
 
     this.formulario = this.fb.group({
       username: [],
@@ -19,12 +20,18 @@ export class LoginComponent {
     });
 
   }
+  ngAfterViewInit() {
+    let token = this.auth.getTokenAuth()
+    if(token){
+      this.router.navigate(['dashboard/productos'])
+      return
+    }
+  }
 
   login() {
     const value = this.formulario.value;
     this.auth.login(value.username, value.password).subscribe(resp => {
-      console.log(resp);
-      this.auth.saveToken(resp.access_token)
+      this.auth.saveToken(resp.access_token, resp.expires_in)
     });
   }
 

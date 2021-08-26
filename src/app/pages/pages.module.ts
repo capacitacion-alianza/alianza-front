@@ -26,7 +26,8 @@ import { CreateUsuarioComponent } from './usuario/create-usuario/create-usuario.
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSnackBarModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    MaterialFileInputModule,
+    MatPaginatorModule
   ]
 })
 export class PagesModule {}

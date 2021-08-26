@@ -36,12 +36,18 @@ export class CreateProductoComponent {
         null,
         [Validators.required, Validators.min(10), Validators.max(50)],
       ],
+      imagen: [
+        null
+      ]
     });
   }
 
   saveProduct() {
-
-    if (this.miFormulario.invalid) {
+    console.log(this.miFormulario.value)
+    const form = new FormData();
+    form.append('id', String(1));
+    form.append('file', this.miFormulario.value.imagen._files[0])
+    /*if (this.miFormulario.invalid) {
       return;
     }
 
@@ -54,6 +60,6 @@ export class CreateProductoComponent {
       (err: HttpErrorResponse) => {
         this.dialogRef.close(false);
       }
-    );
+    );*/
   }
 }

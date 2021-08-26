@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('src/app/pages/pages.module').then(m => m.PagesModule)
+    loadChildren: () => import('src/app/pages/pages.module').then(m => m.PagesModule),
   },
   {
     path: 'auth',
@@ -26,6 +26,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
 
 }

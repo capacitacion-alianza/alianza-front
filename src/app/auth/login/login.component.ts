@@ -32,6 +32,7 @@ export class LoginComponent {
     const value = this.formulario.value;
     this.auth.login(value.username, value.password).subscribe(resp => {
       this.auth.saveToken(resp.access_token, resp.expires_in)
+      this.router.navigate(['dashboard'])
     });
   }
 

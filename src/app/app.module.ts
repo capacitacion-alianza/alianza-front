@@ -34,11 +34,18 @@ import { LayoutComponent } from './layout/layout.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/auth-interceptor';
 
+import { PagesActivesGuardServiceService } from './security/pages-actives-guard-service.service';
+import { CanDeactiveFormUserService } from './security/can-deactive-form-user.service';
+import { MenuComponent } from './shared/menu/menu.component'
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmDeleteComponent,
     LayoutComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +73,8 @@ import { AuthInterceptor } from './core/services/auth-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    PagesActivesGuardServiceService, CanDeactiveFormUserService
   ],
   bootstrap: [AppComponent]
 })

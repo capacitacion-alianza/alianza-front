@@ -24,4 +24,11 @@ export class ProductoService {
     return this.httpClient.post<Producto>(this.endPoint, producto);
   }
 
+  obtenerProducto(idProducto: number): Observable<Producto>{
+    return this.httpClient.get<Producto>(`${this.endPoint}/${idProducto}`);
+  }
+
+  listarProductosPage(page: number, size: number){
+    return this.httpClient.get(`${this.endPoint}/listar-productos/page/${page}/${size}`);
+  }
 }

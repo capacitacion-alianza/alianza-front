@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUsuarioComponent } from '../create-usuario/create-usuario.component';
@@ -11,17 +12,29 @@ import { Router } from '@angular/router'
 })
 export class ListUsuarioComponent {
 
+  testForm: FormGroup;
   constructor(
     private matDialog: MatDialog,
     private authService: AuthService,
-    private route: Router
+    private route: Router,
+    private fb: FormBuilder
   ) {
   }
+
+
   ngAfterViewInit(): void {
     let token = this.authService.getTokenAuth()
     if(!token){
       this.route.navigate(['auth'])
     }
+  }
+
+  ngOnInit() {
+    this.testForm = this.fb.group({
+      id: [null],
+      Name: [null, Validators.required],
+      Age: [null, Validators.required]
+    });
   }
 
   addUser() {
@@ -30,4 +43,10 @@ export class ListUsuarioComponent {
     });
   }
 
+  hasChange(){
+    if(!this.testForm.get('id').value){
+      return true;
+    }
+    return false;
+  }
 }

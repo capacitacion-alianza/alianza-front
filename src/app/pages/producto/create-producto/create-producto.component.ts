@@ -43,11 +43,8 @@ export class CreateProductoComponent {
   }
 
   saveProduct() {
-    console.log(this.miFormulario.value)
-    const form = new FormData();
-    form.append('id', String(1));
-    form.append('file', this.miFormulario.value.imagen._files[0])
-    /*if (this.miFormulario.invalid) {
+
+    if (this.miFormulario.invalid) {
       return;
     }
 
@@ -60,6 +57,6 @@ export class CreateProductoComponent {
       (err: HttpErrorResponse) => {
         this.dialogRef.close(false);
       }
-    );*/
+    );
   }
 }

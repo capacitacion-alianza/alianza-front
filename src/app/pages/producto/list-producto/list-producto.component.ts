@@ -18,8 +18,8 @@ export class ListProductoComponent {
 
   displayedColumns: string[] = ['codigoProducto', 'nombreProducto', 'precio', 'actions'];
   dataSource = new MatTableDataSource(null);
-  dataTableSize: number = 5;
-  dataTablePage: number = 0;
+  dataTableSize: number;
+  dataTablePage: number;
   dataTableTotalElement: number;
   @ViewChild(MatPaginator) paginator;
 
@@ -29,7 +29,8 @@ export class ListProductoComponent {
     private authService: AuthService,
     private route: Router
   ) {
-
+    this.dataTablePage = 0;
+    this.dataTableSize = 5;
   }
   ngAfterViewInit(): void {
     let token = this.authService.getTokenAuth()
@@ -47,7 +48,6 @@ export class ListProductoComponent {
   listarProductos(page: number, size: number) {
     this.productoService.listarProductosPage(page,size).subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response.content);
-      this.dataSource.paginator = this.paginator;
       this.dataTableTotalElement = response.totalElements;
       this.dataTableSize = response.size;
       this.dataTablePage = response.page;
